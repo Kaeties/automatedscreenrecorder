@@ -14,8 +14,13 @@ public class Main {
 	private static String path;
 
 	public static void main(String[] args) throws Exception {
-		setDriverPath(args[1]);
-		readFile(args[0], Integer.parseInt(args[2]));
+
+		if(args.length < 3) {
+			System.out.println("automatedscreenrecorder <script> <driverpath> <timeout>");
+		} else {
+			setDriverPath(args[1]);
+			readFile(args[0], Integer.parseInt(args[2]));
+		}
 	}
 
 	static {
