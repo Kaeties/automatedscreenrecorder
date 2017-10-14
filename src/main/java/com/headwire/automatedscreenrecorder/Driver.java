@@ -102,12 +102,12 @@ public class Driver extends TypeCondition {
 
 	public void scrolldown (String var) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("scroll(0," + var + ");");
+		js.executeScript("window.scrollBy(0," + var + ")", "");
 	}
 
 	public void scrollup (String var) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("scroll(0, -" + var + ");");
+		js.executeScript("window.scrollBy(0, -" + var + ")", "");
 	}
 
 	public void highlight(String var, String type) {
