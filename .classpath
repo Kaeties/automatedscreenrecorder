@@ -23,6 +23,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Pascal/Downloads/selenium-java-3.5.3/client-combined-3.5.3-nodeps.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Pascal/Downloads/MonteScreenRecorder.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

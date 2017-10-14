@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		if(args.length < 2) {
-			System.out.println("automatedscreenrecorder <script> <driverpath> <timeout>");
+			System.out.println("automatedscreenrecorder <script> <driverpath>");
 		} else {
 			setDriverPath(args[1]);
 			readFile(args[0]);
