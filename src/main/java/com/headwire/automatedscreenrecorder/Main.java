@@ -15,11 +15,11 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		if(args.length < 3) {
+		if(args.length < 2) {
 			System.out.println("automatedscreenrecorder <script> <driverpath> <timeout>");
 		} else {
 			setDriverPath(args[1]);
-			readFile(args[0], Integer.parseInt(args[2]));
+			readFile(args[0]);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class Main {
 		commands.put("dragAndDrop", new DragAndDropCommand(testDriver));
 	}
 
-	private static void readFile(String filePath, int timeout) throws Exception {
+	private static void readFile(String filePath) throws Exception {
 		BufferedReader reader = null;
 
 		try {
@@ -52,7 +52,6 @@ public class Main {
 			while ((currentLine = reader.readLine()) != null) {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
-				Thread.sleep(timeout);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
