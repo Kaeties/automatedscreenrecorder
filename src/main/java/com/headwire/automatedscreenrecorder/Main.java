@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -12,6 +13,8 @@ public class Main {
 	private static Recorder testRecorder = new Recorder();
 	private static Map<String, Command> commands = new HashMap<>();
 	private static String path;
+	private static long now;
+	private static boolean started = false;
 
 	public static void main(String[] args) throws Exception {
 
@@ -52,6 +55,7 @@ public class Main {
 			while ((currentLine = reader.readLine()) != null) {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
+				writeLogFile(strArr[0]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,6 +66,23 @@ public class Main {
 				ex.printStackTrace();
 			}
 		}
+	}
+
+	private static void writeLogFile(String command) {
+		if(command.equals("start")) {
+			setNow();
+			Logger logger = Logger.getLogger("MyLogger");
+			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
+			started = true;
+		} else if (started == true) {
+			Logger logger = Logger.getLogger("MyLogger");
+			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
+			started = true;
+		}
+	}
+
+	private static void setNow() {
+		now = System.currentTimeMillis();
 	}
 
 	private static void setDriverPath(String driverPath) {
