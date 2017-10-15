@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 
 public class Main {
 
-	private static Driver testDriver = new Driver();
-	private static Recorder testRecorder = new Recorder();
+	private static Driver driver = Driver.getInstance();
+	private static Recorder recorder = new Recorder();
 	private static Map<String, Command> commands = new HashMap<>();
 	private static String path;
 	private static long now;
@@ -29,23 +29,23 @@ public class Main {
 	
 
 	static {
-		commands.put("start", new StartCommand(testRecorder));
-		commands.put("stop", new StopCommand(testRecorder));
-		commands.put("use", new UseCommand(testDriver));
-		commands.put("open", new OpenCommand(testDriver));
-		commands.put("click", new ClickCommand(testDriver));
-		commands.put("goTo", new GoToCommand(testDriver));
-		commands.put("input", new InputCommand(testDriver));
-		commands.put("rightclick", new RightclickCommand(testDriver));
-		commands.put("getItem", new GetItemCommand(testDriver));
-		commands.put("doubleclick", new DoubleclickCommand(testDriver));
-		commands.put("highlight", new HighlightCommand(testDriver));
-		commands.put("scrolldown", new ScrolldownCommand(testDriver));
-		commands.put("scrollup", new ScrollupCommand(testDriver));
-		commands.put("enter", new EnterCommand(testDriver));
-		commands.put("quit", new QuitCommand(testDriver));
-		commands.put("goToAndClick", new GoToAndClickCommand(testDriver));
-		commands.put("dragAndDrop", new DragAndDropCommand(testDriver));
+		commands.put("start", new StartCommand(recorder));
+		commands.put("stop", new StopCommand(recorder));
+		commands.put("use", new UseCommand(driver));
+		commands.put("open", new OpenCommand(driver));
+		commands.put("click", new ClickCommand(driver));
+		commands.put("goTo", new GoToCommand(driver));
+		commands.put("input", new InputCommand(driver));
+		commands.put("rightclick", new RightclickCommand(driver));
+		commands.put("getItem", new GetItemCommand(driver));
+		commands.put("doubleclick", new DoubleclickCommand(driver));
+		commands.put("highlight", new HighlightCommand(driver));
+		commands.put("scrolldown", new ScrolldownCommand(driver));
+		commands.put("scrollup", new ScrollupCommand(driver));
+		commands.put("enter", new EnterCommand(driver));
+		commands.put("quit", new QuitCommand(driver));
+		commands.put("goToAndClick", new GoToAndClickCommand(driver));
+		commands.put("dragAndDrop", new DragAndDropCommand(driver));
 	}
 
 	private static void readFile(String filePath) throws Exception {

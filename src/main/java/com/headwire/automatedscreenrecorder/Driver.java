@@ -20,8 +20,19 @@ import org.openqa.selenium.interactions.Actions;
 
 public class Driver extends TypeCondition {
 
+	private static Driver instance = null;
 	public static WebDriver driver;
 	public static double multiplicator;
+	
+	private Driver() {
+	}
+	
+	public static Driver getInstance() {
+		if(instance == null) {
+			instance = new Driver();
+		}
+		return instance;
+	}
 
 	private void initChromeDriver() {
 		String exePath = Main.getDriverPath();
