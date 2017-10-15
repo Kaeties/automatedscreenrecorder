@@ -1,48 +1,43 @@
 package com.headwire.automatedscreenrecorder;
 
 public class AudioVideoMerge {
-	
-public boolean mergeAudioVideo() {
-		
+
+	public boolean mergeAudioVideo() {
+
 		/**** code wie er im cmd eingegeben wird
 		 * 
 		 * ffmpeg -y -i test_video.avi -itsoffset 00:00:10 -i search.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 out.avi
 		 */
-	
-		 String[] exeCmd = new String[]{"C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\ffmpeg", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\audio.wav", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\video.mp4" ,"-acodec", "copy", "-vcodec", "copy", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\eclipsefinalmpeeeee.mp4"};
 
-		 
-		 
-		 ProcessBuilder pb = new ProcessBuilder(exeCmd);
-		 boolean exeCmdStatus = executeCMD(pb);
+		String[] exeCmd = new String[]{"C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\ffmpeg", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\audio.wav", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\video.mp4" ,"-acodec", "copy", "-vcodec", "copy", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\eclipsefinalmpeeeee.mp4"}; 
 
-		 return exeCmdStatus;
-		} //End doSomething Function
+		ProcessBuilder pb = new ProcessBuilder(exeCmd);
+		boolean exeCmdStatus = executeCMD(pb);
 
-		private boolean executeCMD(ProcessBuilder pb)
-		{
-		 pb.redirectErrorStream(true);
-		 Process p = null;
+		return exeCmdStatus;
+	} //End doSomething Function
 
-		 try {
-		  p = pb.start();
+	private boolean executeCMD(ProcessBuilder pb) {
+		pb.redirectErrorStream(true);
+		Process p = null;
 
-		 } catch (Exception ex) {
-		 ex.printStackTrace();
-		 System.out.println("oops");
-		 p.destroy();
-		 return false;
+		try {
+			p = pb.start();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("oops");
+			p.destroy();
+			return false;
 		}
 		// wait until the process is done
 		try {
-		 p.waitFor();
+			p.waitFor();
 		} catch (InterruptedException e) {
-		e.printStackTrace();
-		System.out.println("woopsy");
-		p.destroy();
-		return false;
+			e.printStackTrace();
+			System.out.println("woopsy");
+			p.destroy();
+			return false;
 		}
 		return true;
-		 }// End function executeCMD
-
+	}// End function executeCMD
 }

@@ -27,7 +27,6 @@ public class Main {
 		}
 	}
 	
-
 	static {
 		commands.put("start", new StartCommand(recorder));
 		commands.put("stop", new StopCommand(recorder));
