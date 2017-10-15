@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -12,15 +13,18 @@ public class Main {
 	private static Recorder testRecorder = new Recorder();
 	private static Map<String, Command> commands = new HashMap<>();
 	private static String path;
+	private static long now;
+	private static boolean started = false;
 
 	public static void main(String[] args) throws Exception {
-		
-		if(args.length < 3) {
-			System.out.println("automatedscreenrecorder <script> <driverpath> <timeout>");
+
+
+		if(args.length < 2) {
+			System.out.println("automatedscreenrecorder <script> <driverpath>");
 		} else {
 			setDriverPath(args[1]);
-			readFile(args[0], Integer.parseInt(args[2]));
-		}  
+			readFile(args[0]);
+		}
 	}
 	
 
@@ -44,7 +48,7 @@ public class Main {
 		commands.put("dragAndDrop", new DragAndDropCommand(testDriver));
 	}
 
-	private static void readFile(String filePath, int timeout) throws Exception {
+	private static void readFile(String filePath) throws Exception {
 		BufferedReader reader = null;
 
 		try {
@@ -53,7 +57,7 @@ public class Main {
 			while ((currentLine = reader.readLine()) != null) {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
-				Thread.sleep(timeout);
+				writeLogFile(strArr[0]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -64,6 +68,23 @@ public class Main {
 				ex.printStackTrace();
 			}
 		}
+	}
+
+	private static void writeLogFile(String command) {
+		if(command.equals("start")) {
+			setNow();
+			Logger logger = Logger.getLogger("MyLogger");
+			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
+			started = true;
+		} else if (started == true) {
+			Logger logger = Logger.getLogger("MyLogger");
+			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
+			started = true;
+		}
+	}
+
+	private static void setNow() {
+		now = System.currentTimeMillis();
 	}
 
 	private static void setDriverPath(String driverPath) {

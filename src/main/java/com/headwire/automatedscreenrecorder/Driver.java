@@ -102,12 +102,12 @@ public class Driver extends TypeCondition {
 
 	public void scrolldown (String var) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("scroll(0," + var + ");");
+		js.executeScript("window.scrollBy(0," + var + ")", "");
 	}
 
 	public void scrollup (String var) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("scroll(0, -" + var + ");");
+		js.executeScript("window.scrollBy(0, -" + var + ")", "");
 	}
 
 	public void highlight(String var, String type) {
@@ -185,40 +185,80 @@ public class Driver extends TypeCondition {
 		int j = (int) pFromY;
 
 		if(pFromX < pToX && pFromY < pToY) {
-			for(i = (int) pFromX; i<pToX; i++) {
-				initRobot().mouseMove(i, j);
-				Thread.sleep(2);
-				if(j<pToY) {
-					j++;
+			if(pToX - pFromX > pToY - pFromY) {
+				for(i = (int) pFromX; i<pToX; i++) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(j<pToY) {
+						j++;
+					}
+				}
+			} else {
+				for(j = (int) pFromY; j<pToY; j++) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(i<pToX) {
+						i++;
+					}
 				}
 			}
-
+		
 		} else if(pFromX < pToX && pFromY > pToY) {
-			for(i = (int) pFromX; i<pToX; i++) {
-				initRobot().mouseMove(i, j);
-				Thread.sleep(2);
-				if(j>pToY) {
-					j--;
+			if((pToX - pFromX > pFromY - pToY)) {
+				for(i = (int) pFromX; i<pToX; i++) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(j>pToY) {
+						j--;
+					}
+				}
+			} else {
+				for(j = (int) pFromY; j>pToY; j--) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(i<pToX) {
+						i++;
+					}
 				}
 			}
-
+			
 		} else if(pFromX > pToX && pFromY < pToY) {
-			for(i = (int) pFromX; i>pToX; i--) {
-				initRobot().mouseMove(i, j);
-				Thread.sleep(2);
-				if(j<pToY) {
-					j++;
+			if(pFromX - pToX > pToY - pFromY) {
+				for(i = (int) pFromX; i>pToX; i--) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(j<pToY) {
+						j++;
+					}
+				}
+			} else {
+				for(j = (int) pFromY; j<pToY; j++) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(i>pToX) {
+						i--;
+					}
 				}
 			}
-
+			
 		} else if(pFromX > pToX && pFromY > pToY) {
-			for(i = (int) pFromX; i>pToX; i--) {
-				initRobot().mouseMove(i, j);
-				Thread.sleep(2);
-				if(j>pToY) {
-					j--;
+			if(pFromX - pToX > pFromY - pToY) {
+				for(i = (int) pFromX; i>pToX; i--) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(j>pToY) {
+						j--;
+					}
 				}
-			}
+			} else {
+				for(j = (int) pFromY; j>pToY; j--) {
+					initRobot().mouseMove(i, j);
+					Thread.sleep(2);
+					if(i>pToX) {
+						i--;
+					}
+				}
+			}	
 		}
 	}
 }
