@@ -91,6 +91,7 @@ public class UploadVideo {
 
 			InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
 					UploadVideo.class.getResourceAsStream("/test_sample.avi"));
+			System.out.println(mediaContent.toString());
 
 			// Insert the video. The command sends three arguments. The first
 			// specifies which information the API request is setting and which

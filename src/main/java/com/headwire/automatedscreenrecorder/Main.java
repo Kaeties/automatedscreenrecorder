@@ -24,6 +24,7 @@ public class Main {
 		} else {
 			setDriverPath(args[1]);
 			readFile(args[0]);
+			UploadVideo.uploadVideo();
 		}
 	}
 	
