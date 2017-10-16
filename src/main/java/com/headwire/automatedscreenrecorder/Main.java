@@ -57,7 +57,6 @@ public class Main {
 			while ((currentLine = reader.readLine()) != null) {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
-				writeLogFile(strArr[0]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
