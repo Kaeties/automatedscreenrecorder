@@ -27,7 +27,7 @@ private static AmazonPollyClient polly;
 		
 		TextToSpeech helloWorld = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
 		
-		String outputFileName = "C:\\Users\\Patrick\\Desktop\\Polly\\speech2.mp3";
+		String outputFileName = "C:\\Users\\Claudio\\Desktop\\Polly\\speech2.mp3";
 		 
         SynthesizeSpeechRequest synthesizeSpeechRequest = new SynthesizeSpeechRequest()
                 .withOutputFormat(OutputFormat.Mp3)
