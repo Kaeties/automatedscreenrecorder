@@ -24,7 +24,6 @@ public class Main {
 		} else {
 			setDriverPath(args[1]);
 			readFile(args[0]);
-			UploadVideo.uploadVideo();
 		}
 	}
 	
@@ -57,6 +56,7 @@ public class Main {
 			while ((currentLine = reader.readLine()) != null) {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
+				writeLogFile(strArr[0]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
