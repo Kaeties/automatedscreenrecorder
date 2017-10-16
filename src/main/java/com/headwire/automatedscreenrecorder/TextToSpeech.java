@@ -23,7 +23,7 @@ private static AmazonPollyClient polly;
 		new ClientConfiguration());
 	}
 	
-	public static void main(String args[]) throws Exception {
+	public static void textToSpeech() throws Exception {
 		
 		TextToSpeech helloWorld = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
 		
