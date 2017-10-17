@@ -12,6 +12,8 @@ public class Main {
 	private static Driver driver = Driver.getInstance();
 	private static Recorder recorder = new Recorder();
 	private static Map<String, Command> commands = new HashMap<>();
+	private static AudioVideoMerge audio = new AudioVideoMerge();
+	private static UploadVideo upload = new UploadVideo();
 	private static String path;
 	private static long now;
 	private static boolean started = false;
@@ -48,6 +50,9 @@ public class Main {
 		commands.put("quit", new QuitCommand(driver));
 		commands.put("goToAndClick", new GoToAndClickCommand(driver));
 		commands.put("dragAndDrop", new DragAndDropCommand(driver));
+		commands.put("audio", new AudioCommand(audio));
+		commands.put("video", new VideoCommand(audio));
+		commands.put("upload", new UploadCommand(upload));
 	}
 
 	private static void readFile(String filePath) throws Exception {
@@ -73,16 +78,17 @@ public class Main {
 	}
 
 	private static void writeLogFile(String command) {
+		long[] seconds = null;
+		int pointer = 0;
 		if(command.equals("start")) {
 			setNow();
-			Logger logger = Logger.getLogger("MyLogger");
-			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
-			started = true;
-		} else if (started == true) {
-			Logger logger = Logger.getLogger("MyLogger");
-			logger.info(command + " " + ((System.currentTimeMillis() - now)/1000) + " seconds");
-			started = true;
+			seconds[pointer] = (System.currentTimeMillis() - now)/1000;
+			pointer++;
+		} else if (command.equals("audio")) {
+			seconds[pointer] = (System.currentTimeMillis() - now)/1000;
+			pointer++;
 		}
+		audio.getSeconds(seconds);
 	}
 
 	private static void setNow() {
