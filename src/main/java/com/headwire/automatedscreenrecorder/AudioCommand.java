@@ -10,6 +10,6 @@ public class AudioCommand implements Command {
 
 	@Override
 	public void execute(String... vars) throws Exception {
-		audio.collectAudios(vars[1]);
+		audio.collectAudios(vars[0]);
 	}
 }
