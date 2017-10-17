@@ -34,11 +34,6 @@
 			<artifactId>aws-java-sdk-polly</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-polly</artifactId>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.monte/screen-recorder -->
 		<dependency>
 			<groupId>org.monte</groupId>
