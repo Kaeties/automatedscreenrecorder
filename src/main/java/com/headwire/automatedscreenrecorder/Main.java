@@ -3,6 +3,7 @@ package com.headwire.automatedscreenrecorder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -20,19 +21,16 @@ public class Main {
 	private static UploadVideo upload = new UploadVideo();
 	private static String path;
 	private static long now;
-	private static long[] seconds = new long[100];
+	private static ArrayList<Long> seconds = new ArrayList<>();
+	private static int pointer = 0;
 
 	public static void main(String[] args) throws Exception {
 
-		
-		
-		
 		if(args.length < 2) {
 			System.out.println("automatedscreenrecorder <script> <driverpath>");
 		} else {
 			setDriverPath(args[1]);
 			readFile(args[0]);
-			audio.setSeconds(seconds);
 		}
 		
 	}
@@ -84,13 +82,10 @@ public class Main {
 	}
 
 	private static void writeLogFile(String command) {
-		int pointer = 0;
 		if(command.equals("start")) {
 			setNow();
-			seconds[pointer] = (System.currentTimeMillis() - now)/1000;
-			pointer++;
 		} else if (command.equals("audio")) {
-			seconds[pointer] = (System.currentTimeMillis() - now)/1000;
+			seconds.add(pointer, (System.currentTimeMillis() - now)/1000);
 			pointer++;
 		} else {
 			return;
@@ -108,4 +103,8 @@ public class Main {
 	public static String getDriverPath() {
 		return path;	
 	}	
+	
+	public static ArrayList<Long> getSeconds(){
+		return seconds;
+	}
 }

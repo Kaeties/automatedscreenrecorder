@@ -28,11 +28,12 @@ public class Recorder {
 
 	private static ScreenRecorder screenRecorder;
 	public static String videoname;
+	public static String path;
 
-	private void initScreenRecorder(String path, String filename) throws Exception {
+	private void initScreenRecorder(String filepath, String filename) throws Exception {
 		videoname = filename;
+		path = filepath;
 		File file = new File(path);
-		System.out.println(path);
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = screenSize.width;
