@@ -12,5 +12,4 @@ public class UploadCommand implements Command {
 	public void execute(String... vars) throws Exception {
 		upload.uploadVideo();
 	}
-
 }
