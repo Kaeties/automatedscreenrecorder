@@ -8,7 +8,6 @@ public class AudioVideoMerge {
 	private static ArrayList<String> audioInput = new ArrayList<>();
 	private static int pointer = 0;
 	private static ArrayList<Long> seconds = new ArrayList<>();
-	private static ArrayList<String> secondsAsString = new ArrayList<>();
 
 	public boolean mergeAudioVideo(String var, String ffmpegPath) {
 
