@@ -10,6 +10,6 @@ public class VideoCommand implements Command {
 
 	@Override
 	public void execute(String... vars) throws Exception {
-		video.collectAudios(vars[0]);
+		video.mergeAudioVideo(vars[1], vars[2]);
 	}
 }

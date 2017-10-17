@@ -5,11 +5,11 @@ import java.util.Arrays;
 
 public class AudioVideoMerge {
 	
-	private static String[] audioInput = null;
+	private static ArrayList<String> audioInput = new ArrayList<>();
 	private static int pointer = 0;
-	private static String[] seconds;
+	private static ArrayList<Long> seconds = new ArrayList<>();
 
-	public boolean mergeAudioVideo(String var) {
+	public boolean mergeAudioVideo(String var, String ffmpegPath) {
 
 		/**** code wie er im cmd eingegeben wird
 		 * 
@@ -17,39 +17,46 @@ public class AudioVideoMerge {
 		 * ffmpeg -i test_video.avi -i beep.mp3 -i beeps.mp3 -filter_complex "[1]adelay=5000[s2]; [2]adelay=10300[s3]; [s2][s3]amix=2[mixout]" -map 0:v -map [mixout] -c:v copy result.avi
 		 */
 		
-		String[] begin = {"ffmpeg", "-i", Recorder.videoname};
-		ArrayList<String> exeCmd = null;
-		
+		String[] begin = {ffmpegPath + "\\ffmpeg", "-i", Recorder.path + "\\" + Recorder.videoname + ".avi"};
+		ArrayList<String> exeCmd = new ArrayList<>();
 		exeCmd.addAll(Arrays.asList(begin));
-		
-
-		for(int i = 0; i < audioInput.length; i++) {
-			exeCmd.add(audioInput[i]);
-			exeCmd.add("-i");
-		}
-		
+		exeCmd.addAll(audioInput);
 		exeCmd.add("-filter_complex");
 		
-		exeCmd.addAll(Arrays.asList(getSeconds()));
+		seconds = Main.getSeconds();
+		String string = "\"";
+		for(int i = 0, j = i+1; i<seconds.size(); i++, j++) {
+			string = string.concat("[" + j + "]" + "adelay=" + seconds.get(i)*1000 + "[s" + j + "];");
+		}
+		
+		for(int i = 1; i<=seconds.size(); i++) {
+			string = string.concat("[s" + i + "]");
+		}
+		string = string.concat("amix=" + seconds.size() + "[mixout]\"");
+		
+		exeCmd.add(string);
 		
 		String[] end = {"-map", "0:v", "-map", "[mixout]", "-c:v", "copy"}; 
 		
 		exeCmd.addAll(Arrays.asList(end));
 		
-		exeCmd.add(var);
+		exeCmd.add(Recorder.path + "\\" + var + ".avi");
+		
+		String[] command = exeCmd.toArray(new String[exeCmd.size()]);
 
-		ProcessBuilder pb = new ProcessBuilder(exeCmd);
+		ProcessBuilder pb = new ProcessBuilder(command);
 		boolean exeCmdStatus = executeCMD(pb);
 
 		return exeCmdStatus;
 	} //End doSomething Function
 	
 	public void collectAudios(String var) {
-		audioInput[pointer] = var;
+		audioInput.add("-i");
+		pointer++;
+		audioInput.add(pointer, var);
 		pointer++;
 	}
 	
-
 	private boolean executeCMD(ProcessBuilder pb) {
 		pb.redirectErrorStream(true);
 		Process p = null;
@@ -73,14 +80,4 @@ public class AudioVideoMerge {
 		}
 		return true;
 	}// End function executeCMD
-
-	public void setSeconds(long[] seconds) {
-		for(int i = 0; i < seconds.length; i++){
-		    AudioVideoMerge.seconds[i] = String.valueOf(seconds[i]);
-		}
-	}
-	
-	public static String[] getSeconds() {
-		return seconds;
-	}
 }
