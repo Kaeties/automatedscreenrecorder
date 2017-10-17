@@ -6,6 +6,7 @@ public class AudioVideoMerge {
 
 		/**** code wie er im cmd eingegeben wird
 		 * 
+		 * String[] exeCmd = new String[]{"C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\ffmpeg", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\audio.wav", "-i", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\video.mp4" ,"-acodec", "copy", "-vcodec", "copy", "C:\\Users\\st_pa\\ffmpeg\\ffmpeg-3.3.3-win64-static\\bin\\eclipsefinalmpeeeee.mp4"};
 		 * ffmpeg -i test_video.avi -i beep.mp3 -i beeps.mp3 -filter_complex "[1]adelay=5000[s2]; [2]adelay=10300[s3]; [s2][s3]amix=2[mixout]" -map 0:v -map [mixout] -c:v copy result.avi
 		 */
 
