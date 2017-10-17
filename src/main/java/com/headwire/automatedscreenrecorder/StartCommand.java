@@ -10,6 +10,6 @@ public class StartCommand implements Command {
 
 	@Override
 	public void execute(String... vars) throws Exception {
-		recorder.start();
+		recorder.start(vars[1], vars[2]);
 	}
 }

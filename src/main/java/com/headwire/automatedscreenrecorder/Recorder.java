@@ -25,37 +25,40 @@ import org.monte.screenrecorder.ScreenRecorder;
 
 
 public class Recorder {
-	
-	private static ScreenRecorder screenRecorder;
-	
-	private static void initScreenRecorder() throws Exception {
-		 File file = new File("C:\\Users\\st_pa\\Desktop");
-         
-         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-         int width = screenSize.width;
-         int height = screenSize.height;
-                        
-         Rectangle captureSize = new Rectangle(0,0, width, height);
-                        
-       GraphicsConfiguration gc = GraphicsEnvironment
-          .getLocalGraphicsEnvironment()
-          .getDefaultScreenDevice()
-          .getDefaultConfiguration();
 
-       	screenRecorder = new CustomScreenRecorder(gc, captureSize,
-          new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
-          new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
-               CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
-               DepthKey, 24, FrameRateKey, Rational.valueOf(15),
-               QualityKey, 1.0f,
-               KeyFrameIntervalKey, 15 * 60),
-          new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black",
-               FrameRateKey, Rational.valueOf(30)),
-          null, file, "Mypersonalvideo");
+	private static ScreenRecorder screenRecorder;
+	public static String videoname;
+
+	private void initScreenRecorder(String path, String filename) throws Exception {
+		videoname = filename;
+		File file = new File(path);
+		System.out.println(path);
+
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = screenSize.width;
+		int height = screenSize.height;
+
+		Rectangle captureSize = new Rectangle(0,0, width, height);
+
+		GraphicsConfiguration gc = GraphicsEnvironment
+				.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice()
+				.getDefaultConfiguration();
+
+		this.screenRecorder = new CustomScreenRecorder(gc, captureSize,
+				new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
+				new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
+						CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
+						DepthKey, 24, FrameRateKey, Rational.valueOf(15),
+						QualityKey, 1.0f,
+						KeyFrameIntervalKey, 15 * 60),
+				new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black",
+						FrameRateKey, Rational.valueOf(30)),
+				null, file, videoname);
 	}
 
-	public void start() throws Exception {
-		initScreenRecorder();
+	public void start(String path, String filename) throws Exception {
+		initScreenRecorder(path, filename);
 		screenRecorder.start();
 	}
 

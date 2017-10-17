@@ -7,16 +7,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+
 public class Main {
 
 	private static Driver driver = Driver.getInstance();
 	private static Recorder recorder = new Recorder();
 	private static Map<String, Command> commands = new HashMap<>();
+	private static TextToSpeech textToSpeech = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
 	private static AudioVideoMerge audio = new AudioVideoMerge();
 	private static UploadVideo upload = new UploadVideo();
 	private static String path;
 	private static long now;
-	private static boolean started = false;
+	private static long[] seconds = new long[100];
 
 	public static void main(String[] args) throws Exception {
 
@@ -28,6 +32,7 @@ public class Main {
 		} else {
 			setDriverPath(args[1]);
 			readFile(args[0]);
+			audio.setSeconds(seconds);
 		}
 		
 	}
@@ -50,6 +55,7 @@ public class Main {
 		commands.put("quit", new QuitCommand(driver));
 		commands.put("goToAndClick", new GoToAndClickCommand(driver));
 		commands.put("dragAndDrop", new DragAndDropCommand(driver));
+		commands.put("textToSpeech", new TextToSpeechCommand(textToSpeech));
 		commands.put("audio", new AudioCommand(audio));
 		commands.put("video", new VideoCommand(audio));
 		commands.put("upload", new UploadCommand(upload));
@@ -78,7 +84,6 @@ public class Main {
 	}
 
 	private static void writeLogFile(String command) {
-		long[] seconds = null;
 		int pointer = 0;
 		if(command.equals("start")) {
 			setNow();
@@ -87,8 +92,9 @@ public class Main {
 		} else if (command.equals("audio")) {
 			seconds[pointer] = (System.currentTimeMillis() - now)/1000;
 			pointer++;
+		} else {
+			return;
 		}
-		audio.getSeconds(seconds);
 	}
 
 	private static void setNow() {

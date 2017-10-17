@@ -23,16 +23,16 @@ private static AmazonPollyClient polly;
 		new ClientConfiguration());
 	}
 	
-	public static void textToSpeech() throws Exception {
+	public static void transform(String text, String path) throws Exception {
 		
 		TextToSpeech helloWorld = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
 		
-		String outputFileName = "C:\\Users\\Claudio\\Desktop\\Polly\\speech2.mp3";
+		String outputFileName = path;
 		 
         SynthesizeSpeechRequest synthesizeSpeechRequest = new SynthesizeSpeechRequest()
                 .withOutputFormat(OutputFormat.Mp3)
                 .withVoiceId(VoiceId.Joanna)
-                .withText("automated screenrecorder sounds like a really cool project.");
+                .withText(text);
  
         try (FileOutputStream outputStream = new FileOutputStream(new File(outputFileName))) {
             SynthesizeSpeechResult synthesizeSpeechResult = polly.synthesizeSpeech(synthesizeSpeechRequest); 

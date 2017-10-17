@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class AudioVideoMerge {
 	
 	private static String[] audioInput = null;
-	private int pointer = 0;
+	private static int pointer = 0;
 	private static String[] seconds;
 
 	public boolean mergeAudioVideo(String var) {
@@ -17,7 +17,7 @@ public class AudioVideoMerge {
 		 * ffmpeg -i test_video.avi -i beep.mp3 -i beeps.mp3 -filter_complex "[1]adelay=5000[s2]; [2]adelay=10300[s3]; [s2][s3]amix=2[mixout]" -map 0:v -map [mixout] -c:v copy result.avi
 		 */
 		
-		String[] begin = {"ffmpeg", "-i", "test_video.avi"};
+		String[] begin = {"ffmpeg", "-i", Recorder.videoname};
 		ArrayList<String> exeCmd = null;
 		
 		exeCmd.addAll(Arrays.asList(begin));
@@ -76,7 +76,7 @@ public class AudioVideoMerge {
 
 	public void setSeconds(long[] seconds) {
 		for(int i = 0; i < seconds.length; i++){
-		    this.seconds[i] = String.valueOf(seconds[i]);
+		    AudioVideoMerge.seconds[i] = String.valueOf(seconds[i]);
 		}
 	}
 	
