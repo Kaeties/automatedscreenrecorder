@@ -13,5 +13,3 @@ The application also supports audio merging. Audio can either be microphone gene
 
 
 For more information on how to install and run the application, click [here](https://github.com/Kaeties/automatedscreenrecorder/wiki).
-
-Get started [here](https://github.com/Kaeties/automatedscreenrecorder/wiki).
