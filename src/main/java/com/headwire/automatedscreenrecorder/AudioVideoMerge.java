@@ -43,7 +43,7 @@ public class AudioVideoMerge {
 		exeCmd.add(Recorder.path + "\\" + var + ".avi");
 		
 		String[] command = exeCmd.toArray(new String[exeCmd.size()]);
-
+		
 		ProcessBuilder pb = new ProcessBuilder(command);
 		boolean exeCmdStatus = executeCMD(pb);
 

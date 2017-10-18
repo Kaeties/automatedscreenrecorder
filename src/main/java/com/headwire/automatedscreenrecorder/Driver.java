@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -74,6 +75,10 @@ public class Driver extends TypeCondition {
 
 	public void input(String var) {
 		getActiveElement().sendKeys(var);
+	}
+	
+	public void returnKey() {
+		getActiveElement().sendKeys(Keys.RETURN);
 	}
 
 	public WebElement getActiveElement() {

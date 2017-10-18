@@ -42,6 +42,7 @@ public class Main {
 		commands.put("click", new ClickCommand(driver));
 		commands.put("goTo", new GoToCommand(driver));
 		commands.put("input", new InputCommand(driver));
+		commands.put("returnKey", new ReturnKeyCommand(driver));
 		commands.put("rightclick", new RightclickCommand(driver));
 		commands.put("getItem", new GetItemCommand(driver));
 		commands.put("doubleclick", new DoubleclickCommand(driver));

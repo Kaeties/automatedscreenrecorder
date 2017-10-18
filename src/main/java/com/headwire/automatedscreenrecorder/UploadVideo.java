@@ -2,9 +2,9 @@ package com.headwire.automatedscreenrecorder;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -31,8 +31,6 @@ public class UploadVideo {
 	 */
 	private static final String VIDEO_FILE_FORMAT = "video/*";
 
-	private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
-
 	/**
 	 * Upload the user-selected video to the user's YouTube channel. The code
 	 * looks for the video in the application's project folder and uses OAuth
@@ -55,8 +53,6 @@ public class UploadVideo {
 			youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
 					"youtube-cmdline-uploadvideo-sample").build();
 
-			System.out.println("Uploading: " + SAMPLE_VIDEO_FILENAME);
-
 			// Add extra information to the video before uploading.
 			Video videoObjectDefiningMetadata = new Video();
 
@@ -73,19 +69,7 @@ public class UploadVideo {
 			// description for test purposes so that you can easily upload
 			// multiple files. You should remove this code from your project
 			// and use your own standard names instead.
-			Calendar cal = Calendar.getInstance();
-			snippet.setTitle("Test Upload via Java on " + cal.getTime());
-			snippet.setDescription(
-					"Video uploaded via YouTube Data API V3 using the Java library " + "on " + cal.getTime());
-
-			// Set the keyword tags that you want to associate with the video.
-			List<String> tags = new ArrayList<String>();
-			tags.add("test");
-			tags.add("example");
-			tags.add("java");
-			tags.add("YouTube Data API V3");
-			tags.add("erase me");
-			snippet.setTags(tags);
+			snippet.setTitle(var);
 
 			// Add the completed snippet object to the video resource.
 			videoObjectDefiningMetadata.setSnippet(snippet);
@@ -130,6 +114,7 @@ public class UploadVideo {
 						break;
 					case MEDIA_COMPLETE:
 						System.out.println("Upload Completed!");
+						JOptionPane.showMessageDialog(null, "Video successfully uploaded");
 						break;
 					case NOT_STARTED:
 						System.out.println("Upload Not Started!");
@@ -140,15 +125,7 @@ public class UploadVideo {
 			uploader.setProgressListener(progressListener);
 
 			// Call the API and upload the video.
-			Video returnedVideo = videoInsert.execute();
-
-			// Print data about the newly inserted video from the API response.
-			System.out.println("\n================== Returned Video ==================\n");
-			System.out.println("  - Id: " + returnedVideo.getId());
-			System.out.println("  - Title: " + returnedVideo.getSnippet().getTitle());
-			System.out.println("  - Tags: " + returnedVideo.getSnippet().getTags());
-			System.out.println("  - Privacy Status: " + returnedVideo.getStatus().getPrivacyStatus());
-			System.out.println("  - Video Count: " + returnedVideo.getStatistics().getViewCount());
+			videoInsert.execute();
 
 		} catch (GoogleJsonResponseException e) {
 			System.err.println("GoogleJsonResponseException code: " + e.getDetails().getCode() + " : "
