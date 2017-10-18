@@ -1,7 +1,7 @@
 # automatedscreenrecorder  
 **What is automatedscreenrecorder?**
 
-automatedscreenrecorder is an automated Java screencast video recorder for Google Chrome and Mozilla Firefox.
+automatedscreenrecorder is an automated Java screencast video recorder for Google Chrome and Mozilla Firefox.  
 
 
 
