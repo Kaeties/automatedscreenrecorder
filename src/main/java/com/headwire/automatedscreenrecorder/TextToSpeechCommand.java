@@ -10,6 +10,6 @@ public class TextToSpeechCommand implements Command {
 	
 	@Override
 	public void execute(String... vars) throws Exception {
-		textToSpeech.transform(vars[1], vars[2]);
+		TextToSpeech.transform(vars[1], vars[2]);
 	}
 }
