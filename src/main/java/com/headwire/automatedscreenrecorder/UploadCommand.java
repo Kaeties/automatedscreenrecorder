@@ -10,6 +10,6 @@ public class UploadCommand implements Command {
 
 	@Override
 	public void execute(String... vars) throws Exception {
-		upload.uploadVideo();
+		upload.uploadVideo(vars[1]);
 	}
 }

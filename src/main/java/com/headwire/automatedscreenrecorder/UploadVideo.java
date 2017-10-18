@@ -1,5 +1,6 @@
 package com.headwire.automatedscreenrecorder;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,7 +40,7 @@ public class UploadVideo {
 	 *
 	 * @param args command line args (not used).
 	 */
-	public static void uploadVideo() {
+	public static void uploadVideo(String var) {
 
 		// This OAuth 2.0 access scope allows an application to upload files
 		// to the authenticated user's YouTube channel, but doesn't allow
@@ -90,7 +91,7 @@ public class UploadVideo {
 			videoObjectDefiningMetadata.setSnippet(snippet);
 
 			InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
-					UploadVideo.class.getResourceAsStream("/test_sample.avi"));
+					new FileInputStream(var));
 			System.out.println(mediaContent.toString());
 
 			// Insert the video. The command sends three arguments. The first
