@@ -7,7 +7,7 @@ automatedscreenrecorder is an automated Java screencast video recorder for Googl
 
 **How does automatedscreenrecorder work?**
 
-The program implements Selenium for the browser automation. Browser navigation and control is handled by a locally created and saved textfile, which is written in its own domain-specific language. More information can be found [here](https://github.com/Kaeties/automatedscreenrecorder/wiki/Run-the-application).
+The program implements Selenium for the browser automation. Browser navigation and control is handled by a locally created and saved textfile, containing its own domain-specific language.
 The application also supports audio merging. Audio can either be microphone generated or text to speech based using Amazon's webservice Polly. An additional option is to upload the screencast directly to YouTube.
 
 
