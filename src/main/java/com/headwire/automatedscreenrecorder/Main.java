@@ -69,6 +69,7 @@ public class Main {
 				String[] strArr = currentLine.split(";");
 				commands.get(strArr[0]).execute(strArr);
 				writeLogFile(strArr[0]);
+				Thread.sleep(700);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -25,7 +25,7 @@ private static AmazonPollyClient polly;
 	
 	public static void transform(String text, String path) throws Exception {
 		
-		TextToSpeech helloWorld = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
+		TextToSpeech region = new TextToSpeech(Region.getRegion(Regions.US_EAST_1));
 		
 		String outputFileName = path;
 		 

@@ -69,7 +69,7 @@ public class UploadVideo {
 			// description for test purposes so that you can easily upload
 			// multiple files. You should remove this code from your project
 			// and use your own standard names instead.
-			snippet.setTitle(var);
+			snippet.setTitle("FinalPresentationVideo");
 
 			// Add the completed snippet object to the video resource.
 			videoObjectDefiningMetadata.setSnippet(snippet);

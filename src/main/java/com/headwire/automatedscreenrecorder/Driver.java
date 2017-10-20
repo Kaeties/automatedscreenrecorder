@@ -116,14 +116,16 @@ public class Driver extends TypeCondition {
 		return multiplicator;
 	}
 
-	public void scrolldown (String var) {
+	public void scrolldown (String var) throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0," + var + ")", "");
+		Thread.sleep(500);
 	}
 
-	public void scrollup (String var) {
+	public void scrollup (String var) throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0, -" + var + ")", "");
+		Thread.sleep(500);
 	}
 
 	public void highlight(String var, String type) {
@@ -204,7 +206,7 @@ public class Driver extends TypeCondition {
 			double x = pFromX + (pToX-pFromX)/distance * i;
 			double y = pFromY + (pToY-pFromY)/distance * i;
 			initRobot().mouseMove((int)x, (int)y);
-			Thread.sleep(5);
+			Thread.sleep(7);
 		}
 		if(true) return;
 
