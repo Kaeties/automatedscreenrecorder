@@ -5,14 +5,11 @@ import java.awt.GraphicsConfiguration;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.monte.media.Format;
 import org.monte.media.Registry;
 import org.monte.screenrecorder.ScreenRecorder;
 
-public class CustomScreenRecorder extends ScreenRecorder{
-
+public class CustomScreenRecorder extends ScreenRecorder {
 
 	 private String name;
 	 
@@ -32,11 +29,8 @@ public class CustomScreenRecorder extends ScreenRecorder{
 	          } else if (!movieFolder.isDirectory()) {
 	                throw new IOException("\"" + movieFolder + "\" is not a directory.");
 	          }
-	                           
-	          
 	                         
 	          return new File(movieFolder, name  + "."
 	                  + Registry.getInstance().getExtension(fileFormat));
 	    }
-	
 }

@@ -206,88 +206,8 @@ public class Driver extends TypeCondition {
 			double x = pFromX + (pToX-pFromX)/distance * i;
 			double y = pFromY + (pToY-pFromY)/distance * i;
 			initRobot().mouseMove((int)x, (int)y);
-			Thread.sleep(7);
+			Thread.sleep(5);
 		}
 		if(true) return;
-
-//		int i = (int) pFromX;
-//		int j = (int) pFromY;
-//
-//		if(pFromX < pToX && pFromY < pToY) {
-//			if(pToX - pFromX > pToY - pFromY) {
-//				for(i = (int) pFromX; i<pToX; i++) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(j<pToY) {
-//						j++;
-//					}
-//				}
-//			} else {
-//				for(j = (int) pFromY; j<pToY; j++) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(i<pToX) {
-//						i++;
-//					}
-//				}
-//			}
-//
-//		} else if(pFromX < pToX && pFromY > pToY) {
-//			if((pToX - pFromX > pFromY - pToY)) {
-//				for(i = (int) pFromX; i<pToX; i++) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(j>pToY) {
-//						j--;
-//					}
-//				}
-//			} else {
-//				for(j = (int) pFromY; j>pToY; j--) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(i<pToX) {
-//						i++;
-//					}
-//				}
-//			}
-//
-//		} else if(pFromX > pToX && pFromY < pToY) {
-//			if(pFromX - pToX > pToY - pFromY) {
-//				for(i = (int) pFromX; i>pToX; i--) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(j<pToY) {
-//						j++;
-//					}
-//				}
-//			} else {
-//				for(j = (int) pFromY; j<pToY; j++) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(i>pToX) {
-//						i--;
-//					}
-//				}
-//			}
-//
-//		} else if(pFromX > pToX && pFromY > pToY) {
-//			if(pFromX - pToX > pFromY - pToY) {
-//				for(i = (int) pFromX; i>pToX; i--) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(j>pToY) {
-//						j--;
-//					}
-//				}
-//			} else {
-//				for(j = (int) pFromY; j>pToY; j--) {
-//					initRobot().mouseMove(i, j);
-//					Thread.sleep(2);
-//					if(i>pToX) {
-//						i--;
-//					}
-//				}
-//			}
-//		}
 	}
 }
